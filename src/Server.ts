@@ -108,20 +108,20 @@ const routes = () => {
   // StorageLocationRoute.create(storageLocationRoute);
 
   // Use the client's default routing
-  const clientRoot = path.join(__dirname, "../../client", "build");
-
+  const clientRoot = path.join(__dirname,"../",  "build");
+  console.log(clientRoot);
   app.use(express.static(clientRoot));
 
   router.get("*", function (req, res) {
     res.sendFile("index.html", { root: clientRoot });
   });
 
-  app.use("/", BaseRouter);
-  app.use("/computerData", computerDataRouter);
+  app.use("/backend/", BaseRouter);
+  app.use("/backend/computerData", computerDataRouter);
   // app.use("/computerHistory", computerHistoryRouter);
-  app.use("/systemData", systemDataRouter);
+  app.use("/backend/systemData", systemDataRouter);
   // app.use("/notifications", notificationRouter);
-  app.use("/parameters", parametersRoute);
+  app.use("/backend/parameters", parametersRoute);
   // app.use("/storagelocations", storageLocationRoute);
 };
 // Export express instance

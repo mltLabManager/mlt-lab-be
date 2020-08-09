@@ -12,6 +12,7 @@ class PostgresConnection {
 
   public async setup() {
     try {
+      console.log(Boolean(process.env.DB_SSL));
       this.connection = await createConnection({
         type: "postgres",
         host: process.env.DB_HOST,
