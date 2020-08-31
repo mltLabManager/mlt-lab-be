@@ -19,7 +19,8 @@ class PostgresConnection {
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        ssl: Boolean(process.env.DB_SSL),
+        ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
+
         synchronize: true, //only true when editing one of the entities
         // dropSchema: true,
         entities: [ComputerData, ComputerHistory, Parameters, SystemData],
