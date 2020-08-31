@@ -28,6 +28,9 @@ class ComputerHistory {
   lastChangedAt: Date;
 
   @Column({ nullable: true })
+  key: Number;
+
+  @Column({ nullable: true })
   from: Number;
 
   @Column({ nullable: true })
@@ -35,68 +38,14 @@ class ComputerHistory {
 
   @ManyToOne(
     (): ObjectType<ComputerData> => ComputerData,
-    ({ compuetrHistorys }): ComputerHistory[] => compuetrHistorys,
+    ({ computerHistory }): ComputerHistory[] => computerHistory,
     {
       onDelete: "CASCADE",
+      primary: true,
     }
   )
-  @JoinColumn([{ referencedColumnName: "id" }])
+  @JoinColumn([{ name: "computerDataId", referencedColumnName: "id" }])
   computerDataId: ComputerData;
-
-  // @ManyToOne(
-  //   (): ObjectType<ComputerData> => ComputerData,
-  //   ({ identifierLines }): IdentifierLine[] => identifierLines,
-  //   { onDelete: "CASCADE" }
-  // )
-  // @JoinColumn([{ referencedColumnName: "id" }])
-  // countDocLine: CountDocLine;
-
-  // @BeforeUpdate()
-  // updateTime() {
-  //   this.lastChangedAt = new Date(moment().format("YYYY-MM-DD HH:mm:ss"));
-  // }
-
-  // @ManyToOne(
-  //   () => StorageLocation,
-  //   (storageLocation) => storageLocation.countDocs,
-  //   {
-  //     onDelete: "CASCADE",
-  //   }
-  // )
-  // @JoinColumn([
-  //   {
-  //     referencedColumnName: "name",
-  //   },
-  // ])
-  // storageLocation: StorageLocation;
-
-  // @OneToMany((type) => CountDocLine, (countDocLine) => countDocLine.countDoc)
-  // countDocLines: CountDocLine[];
-
-  // @Column({ nullable: true })
-  // countStartTime: Date;
-
-  // @Column({ default: true })
-  // isOpen: Boolean;
-
-  // @ManyToOne(
-  //   (type) => Quartermaster,
-  //   (quartermaster) => quartermaster.quartermasterId,
-  //   { nullable: true }
-  // )
-  // @JoinColumn([{ referencedColumnName: "quartermasterId" }])
-  // lastQuartermasterUpdateId: String;
-
-  // @Column({ nullable: true })
-  // lastUpdate?: Date;
-
-  // @BeforeUpdate()
-  // updateTime() {
-  //   if (isNull(this.lastUpdate)) {
-  //     this.countStartTime = new Date(moment().format("YYYY-MM-DD HH:mm:ss"));
-  //   }
-  //   this.lastUpdate = new Date(moment().format("YYYY-MM-DD HH:mm:ss"));
-  // }
 }
 
 export default ComputerHistory;

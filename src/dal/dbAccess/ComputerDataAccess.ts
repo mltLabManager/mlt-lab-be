@@ -16,16 +16,9 @@ export class ComputerDataAccess {
   }
 
   public async getAllComputerDataById() {
-    //computerId: Number) {
     return this.computerDataRepo
       .find({
-        relations: ["compuetrHistorys"],
-        // order: { lineNumber: "ASC" },
-        // where: [
-        //   {
-        //     computerId: { id: computerId },
-        //   },
-        //],
+        relations: ["computerHistory"],
       })
       .then((data) => data)
       .catch((err) => {
@@ -36,7 +29,7 @@ export class ComputerDataAccess {
   public async getComputerData(computerData: ComputerData) {
     return await this.computerDataRepo.findOne({
       where: { id: computerData.id },
-      relations: ["compuetrHistorys"],
+      relations: ["computerHistory"],
     });
   }
 
@@ -51,4 +44,16 @@ export class ComputerDataAccess {
         throw err;
       });
   }
+
+  public async updateComputersData(computersData: ComputerData[]) {
+    return this.computerDataRepo
+      .save(computersData)
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  } 
 }

@@ -12,7 +12,6 @@ class PostgresConnection {
 
   public async setup() {
     try {
-      console.log(Boolean(process.env.DB_SSL));
       this.connection = await createConnection({
         type: "postgres",
         host: process.env.DB_HOST,
@@ -21,7 +20,8 @@ class PostgresConnection {
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         ssl: Boolean(process.env.DB_SSL),
-        synchronize: Boolean(process.env.DB_SYNC), //only true when editing one of the entities
+        synchronize: true, //only true when editing one of the entities
+        // dropSchema: true,
         entities: [ComputerData, ComputerHistory, Parameters, SystemData],
         logging: Boolean(process.env.DB_LOGGING),
         schema: process.env.DB_SCHEME,

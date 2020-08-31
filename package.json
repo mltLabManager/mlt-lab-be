@@ -2,7 +2,6 @@
   "name": "server",
   "version": "0.0.0",
   "scripts": {
-    "build:client": "cd ../mlt-lab-fe && npm run build && robocopy ./build ../mlt-lab-be/build",
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
@@ -17,7 +16,6 @@
     "@server": "dist/Server"
   },
   "dependencies": {
-    "applicationinsights": "^1.7.5",
     "audit": "0.0.6",
     "axios": "^0.19.2",
     "command-line-args": "^5.1.1",
@@ -32,9 +30,7 @@
     "moment": "^2.25.3",
     "moment-timezone": "^0.5.28",
     "morgan": "^1.10.0",
-    "passport": "^0.4.1",
-    "passport-azure-ad": "^4.2.1",
-    "pg": "^7.18.2",
+    "pg": "^8.3.0",
     "typeorm": "^0.2.24",
     "winston": "^3.2.1"
   },

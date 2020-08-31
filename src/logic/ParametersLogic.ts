@@ -4,7 +4,7 @@ export class ParametersLogic {
   private ParametersDataAccess: ParametersDataAccess = new ParametersDataAccess();
 
   public async getAll() {
-    return this.ParametersDataAccess.getAll();
+    return (await this.ParametersDataAccess.getAll()).sort((a,b) => +a.id - +b.id);
   }
 
   public async getParamById(id: String) {

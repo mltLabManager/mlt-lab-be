@@ -7,33 +7,10 @@ export class SystemDataAccess {
   constructor() {}
 
   public async getAll() {
-    return this.SystemDataRepo.find()
+    return this.SystemDataRepo.find({ relations: ['key']  })
       .then((data) => data)
       .catch((err) => {
         throw err;
       });
   }
-
-  //   public async getParametersById(id: String) {
-  //     return this.SystemDataRepo.createQueryBuilder("systemData")
-  //       .innerJoin(
-  //         "systemData.quartermasters",
-  //         "quartermasters",
-  //         "quartermasters.quartermasterId = :id",
-  //         { id }
-  //       )
-  //       .getMany()
-  //       .then((data) => data)
-  //       .catch((err) => {
-  //         throw err;
-  //       });
-  //   }
-
-  //   public async getParametersById(id: String) {
-  //     return this.ParametersRepo.findOne({ where: { id } })
-  //       .then((data) => data)
-  //       .catch((err) => {
-  //         throw err;
-  //       });
-  //   }
 }

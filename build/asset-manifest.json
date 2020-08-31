@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.c4012a03.chunk.css",
-    "main.js": "/static/js/main.2f2ea3be.chunk.js",
-    "main.js.map": "/static/js/main.2f2ea3be.chunk.js.map",
+    "main.css": "/static/css/main.4901eea0.chunk.css",
+    "main.js": "/static/js/main.cd414dd9.chunk.js",
+    "main.js.map": "/static/js/main.cd414dd9.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e689f8bb.js",
     "runtime-main.js.map": "/static/js/runtime-main.e689f8bb.js.map",
-    "static/js/2.50d79157.chunk.js": "/static/js/2.50d79157.chunk.js",
-    "static/js/2.50d79157.chunk.js.map": "/static/js/2.50d79157.chunk.js.map",
+    "static/js/2.fa22770a.chunk.js": "/static/js/2.fa22770a.chunk.js",
+    "static/js/2.fa22770a.chunk.js.map": "/static/js/2.fa22770a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e2cf5b1d00aa5b335fa6aa00d1e5f3c8.js": "/precache-manifest.e2cf5b1d00aa5b335fa6aa00d1e5f3c8.js",
+    "precache-manifest.2a66699083e783f5e351d1a8c5a06f8d.js": "/precache-manifest.2a66699083e783f5e351d1a8c5a06f8d.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.c4012a03.chunk.css.map": "/static/css/main.c4012a03.chunk.css.map",
-    "static/js/2.50d79157.chunk.js.LICENSE.txt": "/static/js/2.50d79157.chunk.js.LICENSE.txt",
-    "static/media/city.png": "/static/media/city.0de1cfcd.png",
-    "static/media/computer.png": "/static/media/computer.6421602d.png",
+    "static/css/main.4901eea0.chunk.css.map": "/static/css/main.4901eea0.chunk.css.map",
+    "static/js/2.fa22770a.chunk.js.LICENSE.txt": "/static/js/2.fa22770a.chunk.js.LICENSE.txt",
+    "static/media/createDelivery.1397c389.svg": "/static/media/createDelivery.1397c389.svg",
     "static/media/industry.png": "/static/media/industry.61e5ad16.png",
-    "static/media/person.png": "/static/media/person.ed3a8819.png"
+    "static/media/person.png": "/static/media/person.ed3a8819.png",
+    "static/media/reciveItem.8e1d26bd.svg": "/static/media/reciveItem.8e1d26bd.svg",
+    "static/media/truck-dark.png": "/static/media/truck-dark.7c0e07d6.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e689f8bb.js",
-    "static/js/2.50d79157.chunk.js",
-    "static/css/main.c4012a03.chunk.css",
-    "static/js/main.2f2ea3be.chunk.js"
+    "static/js/2.fa22770a.chunk.js",
+    "static/css/main.4901eea0.chunk.css",
+    "static/js/main.cd414dd9.chunk.js"
   ]
 }

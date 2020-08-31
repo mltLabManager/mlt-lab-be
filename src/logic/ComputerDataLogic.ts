@@ -36,30 +36,37 @@ export class ComputerDataLogic {
       object.cpu = computerData.cpu;
       object.ram = computerData.ram;
       object.sdd = computerData.sdd;
+      object.screenSize = computerData.screenSize;
       object.isImageInstalled = computerData.isImageInstalled;
-      object.compuetrHistorys = currentComputer.compuetrHistorys;
+      object.computerHistory = currentComputer.computerHistory;
 
       let objectHistory;
 
       if (currentComputer.currentStatus !== object.currentStatus) {
         objectHistory = new ComputerHistory();
         objectHistory.changedBy = userId;
+        objectHistory.key = 2;
         objectHistory.from = currentComputer.currentStatus;
         objectHistory.to = object.currentStatus;
         objectHistory.lastChangedAt = new Date();
-        object.compuetrHistorys.push(objectHistory);
+        object.computerHistory.push(objectHistory);
       }
 
       if (currentComputer.currentLocation !== object.currentLocation) {
         objectHistory = new ComputerHistory();
         objectHistory.changedBy = userId;
+        objectHistory.key = 1;
         objectHistory.from = currentComputer.currentLocation;
         objectHistory.to = object.currentLocation;
         objectHistory.lastChangedAt = new Date();
-        object.compuetrHistorys.push(objectHistory);
+        object.computerHistory.push(objectHistory);
       }
 
       return this.computerDataAccess.updateComputerData(object);
     }
+  }
+
+  public async updateComputersData(computersData: ComputerData[]) {
+    return this.computerDataAccess.updateComputersData(computersData);
   }
 }
