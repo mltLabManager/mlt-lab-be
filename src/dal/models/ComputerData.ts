@@ -18,7 +18,7 @@ import ComputerHistory from "./ComputerHistory";
 @Entity({ name: "computerData" })
 class ComputerData {
   @PrimaryColumn()
-  id: String;
+  id: string;
 
   @OneToMany((): ObjectType<ComputerHistory> => ComputerHistory, ({ computerDataId }): ComputerData => computerDataId, {
     onDelete: "CASCADE",
