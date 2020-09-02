@@ -1,12 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, PrimaryColumn } from "typeorm";
 
-import Parameters from './Parameters';
+import Parameters from "./Parameters";
 
 @Entity({ name: "systemData" })
 class SystemData {
-
-  @PrimaryGeneratedColumn()
-  private id: String;
+  @PrimaryColumn()
+  id: string;
 
   @ManyToOne(() => Parameters, { primary: true })
   @JoinColumn([{ name: "key", referencedColumnName: "id" }])
