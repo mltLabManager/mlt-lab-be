@@ -76,4 +76,5 @@ const routes = () => {
   app.use("/backend/systemData", systemDataRouter);
   app.use("/backend/parameters", parametersRoute);
 };
+
 export default app;
