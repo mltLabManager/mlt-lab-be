@@ -18,9 +18,9 @@ import ComputerHistory from "./ComputerHistory";
 @Entity({ name: "computerData" })
 class ComputerData {
   @PrimaryColumn()
-  id: string;
+  id: String;
 
-  @OneToMany((): ObjectType<ComputerHistory> => ComputerHistory, ({ computerDataId }): ComputerData => computerDataId, {
+  @OneToMany(() => ComputerHistory, (history) => history.computerDataId, {
     onDelete: "CASCADE",
     cascade: true,
     nullable: true,

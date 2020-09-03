@@ -3,7 +3,7 @@ import SystemData from "./SystemData";
 
 @Entity({ name: "parameters" })
 class Parameters {
-  @PrimaryColumn()
+  @PrimaryColumn({ name: "pram_id" })
   id: String;
 
   @Column()

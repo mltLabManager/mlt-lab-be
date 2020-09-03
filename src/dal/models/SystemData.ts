@@ -7,8 +7,8 @@ class SystemData {
   @PrimaryColumn()
   id: string;
 
-  @ManyToOne(() => Parameters, { primary: true })
-  @JoinColumn([{ name: "key", referencedColumnName: "id" }])
+  @ManyToOne(() => Parameters, (parm) => parm.systemData, { primary: true })
+  @JoinColumn([{ name: "pram_id", referencedColumnName: "id" }])
   key: Parameters;
 
   @Column()
