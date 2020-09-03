@@ -36,15 +36,12 @@ class ComputerHistory {
   @Column({ nullable: true })
   to: Number;
 
-  @ManyToOne(
-    (): ObjectType<ComputerData> => ComputerData,
-    ({ computerHistory }): ComputerHistory[] => computerHistory,
-    {
-      onDelete: "CASCADE",
-      primary: true,
-    }
-  )
-  @JoinColumn([{ name: "computerDataId", referencedColumnName: "id" }])
+  @ManyToOne(() => ComputerData, (data) => data.computerHistory, {
+    onDelete: "CASCADE",
+    primary: true,
+    nullable: true,
+  })
+  @JoinColumn([{ name: "computer_data_id", referencedColumnName: "id" }])
   computerDataId: ComputerData;
 }
 
