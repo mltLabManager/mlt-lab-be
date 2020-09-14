@@ -21,12 +21,12 @@ interface DeliveryJson {
   id?: string;
   deliverStatus: number;
   archive: boolean;
-  basketType?: string; 
-  comment?: string; 
+  basketType?: string;
+  comment?: string;
   family?: string;
-  courier?: string; 
+  courier?: string;
   quantity?: number;
-  selfPickup? :boolean;
+  selfPickup?: boolean;
 }
 
 interface DeliveryData {
@@ -73,7 +73,8 @@ export class ComputerDataController extends Controller {
 
   public async getCourier(courierPhoneNumber: string, req: Request) {
     try {
-      const getURL = "https://mlt-test.herokuapp.com/mlt/api/Helpers?phone=" + courierPhoneNumber + "&_limit=1";
+      //const getURL = "https://mlt-test.herokuapp.com/mlt/api/Helpers?phone=" + courierPhoneNumber + "&_limit=1";
+      const getURL = "https://salmaz.herokuapp.com/mlt/api/Helpers?phone=" + courierPhoneNumber + "&_limit=1";
       const cookie = req.headers.cookie?.toString().replace("token", "authorization");
       const courierData: any = await axios.get(getURL, {
         headers: {
@@ -86,7 +87,7 @@ export class ComputerDataController extends Controller {
           cookie: cookie,
         },
       });
-      return (courierData.data.length > 0)? courierData.data[0].id : '';
+      return courierData.data.length > 0 ? courierData.data[0].id : "";
     } catch (e) {
       console.log(e);
       return "";
@@ -98,10 +99,14 @@ export class ComputerDataController extends Controller {
       const courier: string = await this.getCourier(req.query.phone.toString(), req);
       if (!courier) res.status(BAD_REQUEST).send();
 
+      // const getShipmentDataURL =
+      //   "https://mlt-test.herokuapp.com/mlt/api/FamilyDeliveries?courier=" + courier + "&archive=false&_sort=name&_order=asc";
+
       const getShipmentDataURL =
-        "https://mlt-test.herokuapp.com/mlt/api/FamilyDeliveries?courier=" +
+        "https://salmaz.herokuapp.com/mlt/api/FamilyDeliveries?courier=" +
         courier +
         "&archive=false&_sort=name&_order=asc";
+
       const cookie = req.headers.cookie?.toString().replace("token", "authorization");
       const shipmentData: any = await axios.get(getShipmentDataURL, {
         headers: {
@@ -181,8 +186,7 @@ export class ComputerDataController extends Controller {
     this.computerDataLogic
       .updateComputersData(computerDataLines)
       .then(async (data) => {
-        if(newDeliverys.length > 0) 
-          this.newProductsDeliveryCreation(newDeliverys, courier, req, res);
+        if (newDeliverys.length > 0) this.newProductsDeliveryCreation(newDeliverys, courier, req, res);
         deliverysData.map((delivery) => {
           if (delivery.quantityMissing === 0) {
             let JsonData: DeliveryJson = {
@@ -229,20 +233,24 @@ export class ComputerDataController extends Controller {
       });
   }
 
-  public newProductsDeliveryCreation = 
-    async (newProductsWithoutDelivery: DeliveryRowType[], courier: string, req: Request, res: Response) => {
+  public newProductsDeliveryCreation = async (
+    newProductsWithoutDelivery: DeliveryRowType[],
+    courier: string,
+    req: Request,
+    res: Response
+  ) => {
     try {
-      newProductsWithoutDelivery.forEach(newProductWithoutDelivery => {
+      newProductsWithoutDelivery.forEach((newProductWithoutDelivery) => {
         let basketType: string = "";
         switch (newProductWithoutDelivery.type) {
           case 1:
-            basketType = "מסך"
+            basketType = "מסך";
             break;
           case 2:
-            basketType = "מחשב נייד"
+            basketType = "מחשב נייד";
             break;
           case 3:
-            basketType = "מחשב"
+            basketType = "מחשב";
             break;
           default:
             break;
@@ -252,7 +260,7 @@ export class ComputerDataController extends Controller {
           deliverStatus: 11,
           courier: courier,
           quantity: 1,
-          basketType: basketType
+          basketType: basketType,
         };
         this.sendAPICreate(JsonData, req);
       });
@@ -266,8 +274,12 @@ export class ComputerDataController extends Controller {
     let deliveryJson;
     console.log("newDeliveryToBeSaved => ", newDeliveryToBeSaved);
     try {
+      // const reportDeliveryReceptionURL =
+      //   "https://mlt-test.herokuapp.com/mlt/api/ActiveFamilyDeliveries/" +
+      //   newDeliveryToBeSaved.id;
       const reportDeliveryReceptionURL =
-        "https://mlt-test.herokuapp.com/mlt/api/ActiveFamilyDeliveries/" + newDeliveryToBeSaved.id;
+        "https://salmaz.herokuapp.com/mlt/api/ActiveFamilyDeliveries/" + newDeliveryToBeSaved.id;
+
       const cookie = req.headers.cookie?.toString().replace("token", "authorization");
       const reportDeliveryReceptionData: any = await axios.put(
         reportDeliveryReceptionURL,
@@ -296,12 +308,16 @@ export class ComputerDataController extends Controller {
   public sendAPICreate = async (newDeliveryToBeCreated: DeliveryJson, req: Request) => {
     let deliveryJson;
     try {
-      const reportDeliveryReceptionURL = "https://mlt-test.herokuapp.com/mlt/api/addDelivery";
+      // const reportDeliveryReceptionURL =
+      //   "https://mlt-test.herokuapp.com/mlt/api/addDelivery";
+      const reportDeliveryReceptionURL = "https://salmaz.herokuapp.com/mlt/api/addDelivery";
       const cookie = req.headers.cookie?.toString().replace("token", "authorization");
-      const donorId = (newDeliveryToBeCreated.family)? newDeliveryToBeCreated.family : "483d4ccb-555c-4336-b375-98f821630eb4";
-      console.log("Body of request sent to Hagai ==> ", newDeliveryToBeCreated)
-      console.log("Donor Id ==> ", donorId)
-      console.log("========================================")
+      const donorId = newDeliveryToBeCreated.family
+        ? newDeliveryToBeCreated.family
+        : "483d4ccb-555c-4336-b375-98f821630eb4";
+      console.log("Body of request sent to Hagai ==> ", newDeliveryToBeCreated);
+      console.log("Donor Id ==> ", donorId);
+      console.log("========================================");
       const reportDeliveryReceptionData: any = await axios.post(
         reportDeliveryReceptionURL,
         JSON.stringify({

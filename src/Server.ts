@@ -70,11 +70,10 @@ const routes = () => {
     res.sendFile("index.html", { root: clientRoot });
   });
 
-  app.use("/backend/", BaseRouter);
+  app.use("/backend", BaseRouter);
   app.use("/backend/user", UserRouter);
   app.use("/backend/computerData", computerDataRouter);
   app.use("/backend/systemData", systemDataRouter);
   app.use("/backend/parameters", parametersRoute);
 };
-
 export default app;
