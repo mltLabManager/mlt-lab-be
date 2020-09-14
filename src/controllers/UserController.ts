@@ -12,7 +12,8 @@ export class UserController extends Controller {
     try {
       // Get token
       const token: any = await axios.post(
-        "https://mlt-test.herokuapp.com/mlt/api/login",
+        //"https://mlt-test.herokuapp.com/mlt/api/login",
+        "https://salmaz.herokuapp.com/mlt/api/login",
         JSON.stringify({
           args: [req.body],
         }),
