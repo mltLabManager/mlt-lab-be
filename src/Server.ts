@@ -28,8 +28,8 @@ const buildDAOFactory = async () => {
 const app = express();
 
 // Add middleware/settings/routes to express.
-// app.use(cors());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors());
+//app.use(cors({ credentials: true, origin: "http://localhost:3001/#/" }));
 
 app.disable("etag");
 app.use(logger("dev"));
